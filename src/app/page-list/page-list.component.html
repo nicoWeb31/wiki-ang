@@ -1,3 +1,24 @@
 <h3>Result List</h3>
+{{lists.length}}
+
+<table class="table is-striped">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Word Count</th>
+      <th>Snippet</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of lists">
+      <td>{{item.title}}</td>
+      <td>{{item.wordCount}}</td>
+      <td>{{item.snippet}}</td>
+
+    </tr>
+  </tbody>
+</table>
+
+
 
 

@@ -8,18 +8,19 @@ import { SearchService } from './search.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  term: string = '';
   title = 'wiki-search';
-  response: string[] = [];
-  sub!: Subscription;
+  response: any[] = [];
+  // sub!: Subscription;
 
   constructor(private serviceSearch: SearchService) {}
 
   onTerm(e: any) {
-    this.term = e.value;
-    this.sub = this.serviceSearch.search(e).subscribe((result) => {
+
+    this.serviceSearch.search(e).subscribe((result) => {
       console.log(result.query.search);
-      this.response = result.query.results;
+      this.response = result.query.search;
     });
   }
+
+
 }
