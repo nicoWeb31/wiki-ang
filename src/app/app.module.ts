@@ -10,12 +10,16 @@ import { PageListComponent } from './page-list/page-list.component';
 import { CounterModule } from './counter/counter.module';
 import { StoreModule } from '@ngrx/store';
 import { counterReducer } from './counter/state/counter.reducer';
+import { HomeComponent } from './home/home.component';
+import { HeaderComponent } from './shared/components/header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchBarComponent,
-    PageListComponent
+    PageListComponent,
+    HomeComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

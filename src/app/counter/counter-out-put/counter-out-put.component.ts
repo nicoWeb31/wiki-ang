@@ -11,23 +11,22 @@ import { getCounter } from '../state/couter-selectors';
 })
 export class CounterOutPutComponent implements OnInit, OnDestroy {
   counter: number = 0;
-  // counter$!: Observable<{ counter: number }>;
-  counterSub!: Subscription;
+  counter$!: Observable<number>;
+  // counterSub!: Subscription;
 
   constructor(private store: Store<{ counter: CounterState }>) {}
 
   ngOnInit(): void {
-    this.counterSub = this.store.select(getCounter).subscribe((counter) => {
-      console.log('counter observable called ');
-      this.counter = counter;
-    });
+    // this.counterSub = this.store.select(getCounter).subscribe((counter) => {
+    //   console.log('counter observable called ');
+    //   this.counter = counter;
+    // });
 
-    // this.counter$ = this.store.select('counter');
+    this.counter$ = this.store.select(getCounter);
   }
 
   ngOnDestroy(): void {
-    if (this.counterSub) {
-      this.counterSub.unsubscribe();
-    }
+    // if (this.counterSub) {
+    //   this.counterSub.unsubscribe();
   }
 }

@@ -5,6 +5,7 @@ import { CounterOutPutComponent } from './counter-out-put/counter-out-put.compon
 import { CounterButtonComponent } from './counter-button/counter-button.component';
 import { CounterInputComponent } from './counter-input/counter-input.component';
 import { FormsModule } from '@angular/forms';
+import { CounterRoutingModule } from './counter.routing.module';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,7 @@ import { FormsModule } from '@angular/forms';
     CounterButtonComponent,
     CounterInputComponent,
   ],
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, CounterRoutingModule],
   exports: [CounterComponent, CounterOutPutComponent, CounterButtonComponent],
 })
 export class CounterModule {}
