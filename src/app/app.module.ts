@@ -8,6 +8,8 @@ import { AppComponent } from './app.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { PageListComponent } from './page-list/page-list.component';
 import { CounterModule } from './counter/counter.module';
+import { StoreModule } from '@ngrx/store';
+import { counterReducer } from './counter/state/counter.reducer';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,7 @@ import { CounterModule } from './counter/counter.module';
     AppRoutingModule,
     HttpClientModule,
     CounterModule,
+    StoreModule.forRoot({counter : counterReducer}),
   ],
   providers: [],
   bootstrap: [AppComponent]
