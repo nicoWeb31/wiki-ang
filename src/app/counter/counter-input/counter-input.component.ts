@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { AppState } from 'src/app/store/app.state';
 import { changeText, customIncrement } from '../state/counter.action';
 import { CounterState } from '../state/counter.state';
 import { getText } from '../state/couter-selectors';
@@ -15,7 +16,7 @@ export class CounterInputComponent implements OnInit {
   text$!: Observable<string>;
   newText!: string;
 
-  constructor(private store: Store<{ counter: CounterState }>) {}
+  constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
     this.text$ = this.store.select(getText);
