@@ -1,5 +1,14 @@
 <p>counter-input works!</p>
 <div class="">
+  <h6>{{text}}</h6>
   <input type="number" placeholder="enter value" [(ngModel)]="value"/>
   <button class="btn btn-primary" (click)="onHandleCustomIncrement()"> add to counter</button>
+</div>
+
+<div class="
+">
+
+<input type="text" placeholder="enter newText" [(ngModel)]="newText"/>
+
+<button (click)="onChangeText()" class="btn btn-info">change text</button>
 </div>
