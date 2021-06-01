@@ -1,15 +1,47 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs';
+import { AppState } from 'src/app/store/app.state';
+import { Post } from '../models/post.model';
+import { getPostById } from '../state/posts.selector';
 
 @Component({
   selector: 'app-edit-post',
   templateUrl: './edit-post.component.html',
-  styleUrls: ['./edit-post.component.css']
+  styleUrls: ['./edit-post.component.css'],
 })
-export class EditPostComponent implements OnInit {
+export class EditPostComponent implements OnInit, OnDestroy {
+  editForm!: FormGroup;
+  post!: Post;
+  postSub!: Subscription;
 
-  constructor() { }
+  constructor(private route: ActivatedRoute, private store: Store<AppState>) {}
 
   ngOnInit(): void {
+    this.route.paramMap.subscribe((params) => {
+      const id = params.get('id');
+      this.postSub = this.store.select(getPostById, { id }).subscribe((data) => {
+        this.post = data;
+        console.log(this.post);
+      });
+    });
+
+    this.createform();
   }
 
+  createform(){
+    this.editForm = new FormGroup({
+      title: new FormControl(this.post.title, [Validators.required, Validators.minLength(6)]),
+      description: new FormControl(this.post.description, [Validators.required, Validators.minLength(6)]),
+
+    })
+  }
+
+  onUpdatePost() {}
+
+  ngOnDestroy(){
+    this.postSub.unsubscribe()
+  }
 }
