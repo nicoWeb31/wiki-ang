@@ -11,6 +11,7 @@ import { HomeComponent } from './home/home.component';
 import { PageListComponent } from './page-list/page-list.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { HeaderComponent } from './shared/components/header/header.component';
+import { EffectsModule } from '@ngrx/effects';
 
 
 
@@ -24,9 +25,11 @@ import { HeaderComponent } from './shared/components/header/header.component';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     HttpClientModule,
     CounterModule,
+    EffectsModule.forRoot([]),
     StoreModule.forRoot({}),
     StoreDevtoolsModule.instrument({
       logOnly: environment.production,
