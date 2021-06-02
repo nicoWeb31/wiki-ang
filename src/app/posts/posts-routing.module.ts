@@ -5,11 +5,14 @@ import { EditPostComponent } from './edit-post/edit-post.component';
 import { PostListComponent } from './post-list/post-list.component';
 
 const routes: Routes = [
-  {path : '' , component : PostListComponent},
-  {path : 'add', component : AddPostComponent},
-  {path : 'edit/:id', component : EditPostComponent},
-
+  {path : '' ,component: PostListComponent , children:[
+    {path : 'add', component : AddPostComponent},
+    {path : 'edit/:id', component : EditPostComponent},
+  ]},
 ];
+
+
+
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

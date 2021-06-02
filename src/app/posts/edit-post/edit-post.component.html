@@ -1,27 +1,52 @@
 <div class="row">
   <div class="col-md-12">
-    <form  [formGroup]="editForm" (ngSubmit)="onUpdatePost()">
+    <form [formGroup]="editForm" (ngSubmit)="onUpdatePost()">
       <h3>Edit Post</h3>
-      <hr>
+      <hr />
       <div class="mb-3">
         <label>Title</label>
         <input type="text" class="form-control" formControlName="title" />
       </div>
-      <!-- <div *ngIf="postForm.get('title')?.touched && !postForm.get('title')?.valid"> -->
-        <!-- <div *ngIf="postForm.get('title')?.errors?.required">
+      <!-- validation title -->
+      <div
+        *ngIf="editForm.get('title')?.touched && !editForm.get('title')?.valid"
+      >
+        <div *ngIf="editForm.get('title')?.errors?.required">
           Title is required
         </div>
-        <div *ngIf="postForm.get('title')?.errors?.minlength">
+        <div *ngIf="editForm.get('title')?.errors?.minlength">
           Title should be have minimum 6 character
-        </div> -->
-      <!-- </div> -->
+        </div>
+      </div>
       <div class="mb-3">
         <label>Description</label>
         <textarea class="form-control" formControlName="description"></textarea>
       </div>
+      <!-- validation description -->
+      <div
+        *ngIf="
+          editForm.get('description')?.touched &&
+          !editForm.get('description')?.valid
+        "
+      >
+        <div *ngIf="editForm.get('description')?.errors?.required">
+          description is required
+        </div>
+        <div *ngIf="editForm.get('description')?.errors?.minlength">
+          description should be have minimum 6 character
+        </div>
+      </div>
+
       <!-- <div>{{ showDescriptionError() }}</div> -->
       <div class="">
-        <button type="submit" class="btn btn-primary" [disabled]="!editForm.valid" >Add post</button>
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="!editForm.valid"
+        >
+          edit post
+        </button>
+
       </div>
     </form>
   </div>
