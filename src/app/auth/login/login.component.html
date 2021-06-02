@@ -1,50 +1,61 @@
 <div [formGroup]="loginForm" class="row" (ngSubmit)="onSubmitLogin()">
-  <div class="col-md-6 offset-md-3">
-    <h3>Login</h3>
-    <hr />
-    <form action="">
-      <div class="mb-3">
-        <label>Email</label>
-        <input type="text" class="form-control" formControlName="email" />
-      </div>
-      <!-- controle -->
-      <div
-        *ngIf="
-          loginForm.get('email')?.touched && !loginForm.get('email')?.valid
-        "
-      >
-        <div *ngIf="loginForm.get('email')?.errors?.required">
-          Email is required
-        </div>
-        <div *ngIf="loginForm.get('email')?.errors?.email">
-          Email is invalid
-        </div>
-      </div>
+    <div class="col-md-6 offset-md-3">
+        <h3>Login</h3>
+        <hr />
+        <form action="">
+            <div class="mb-3">
+                <label>Email</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    formControlName="email"
+                />
+            </div>
+            <!-- controle -->
+            <div
+                *ngIf="
+                    loginForm.get('email')?.touched &&
+                    !loginForm.get('email')?.valid
+                "
+            >
+                <div *ngIf="loginForm.get('email')?.errors?.required">
+                    Email is required
+                </div>
+                <div *ngIf="loginForm.get('email')?.errors?.email">
+                    Email is invalid
+                </div>
+            </div>
 
-      <div class="mb-3">
-        <label>password</label>
-        <input
-          type="password"
-          class="form-control"
-          formControlName="password"
-        />
-      </div>
+            <div class="mb-3">
+                <label>password</label>
+                <input
+                    type="password"
+                    class="form-control"
+                    formControlName="password"
+                />
+            </div>
 
-      <!-- controle -->
-      <div
-        *ngIf="
-          loginForm.get('password')?.touched &&
-          !loginForm.get('password')?.valid
-        "
-      >
-        <div *ngIf="loginForm.get('password')?.errors?.required">
-          password is required
-        </div>
-      </div>
+            <!-- controle -->
+            <div
+                *ngIf="
+                    loginForm.get('password')?.touched &&
+                    !loginForm.get('password')?.valid
+                "
+            >
+                <div *ngIf="loginForm.get('password')?.errors?.required">
+                    password is required
+                </div>
+            </div>
 
-      <div class="mb-3">
-        <button class="btn btn-primary" type="submit" [disabled]="!loginForm.valid" >Login</button>
-      </div>
-    </form>
-  </div>
+            <div class="mb-3">
+                <button
+                    class="btn btn-primary"
+                    type="submit"
+                    [disabled]="!loginForm.valid"
+                >
+                    Login
+                </button>
+            </div>
+        </form>
+    </div>
 </div>

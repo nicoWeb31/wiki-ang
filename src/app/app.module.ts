@@ -1,6 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
@@ -11,7 +12,8 @@ import { HomeComponent } from './home/home.component';
 import { PageListComponent } from './page-list/page-list.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { HeaderComponent } from './shared/components/header/header.component';
-import { EffectsModule } from '@ngrx/effects';
+import { LaodingSpinnerComponent } from './shared/components/laoding-spinner/laoding-spinner.component';
+import { appReducer } from './store/app.state';
 
 
 
@@ -21,7 +23,8 @@ import { EffectsModule } from '@ngrx/effects';
     SearchBarComponent,
     PageListComponent,
     HomeComponent,
-    HeaderComponent
+    HeaderComponent,
+    LaodingSpinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +33,7 @@ import { EffectsModule } from '@ngrx/effects';
     HttpClientModule,
     CounterModule,
     EffectsModule.forRoot([]),
-    StoreModule.forRoot({}),
+    StoreModule.forRoot(appReducer),
     StoreDevtoolsModule.instrument({
       logOnly: environment.production,
     }),
