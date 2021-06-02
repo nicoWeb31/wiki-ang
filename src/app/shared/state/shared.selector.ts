@@ -1,2 +1,15 @@
-export const SHARED_NAME_REDUCER = 'shared';
+import { createFeatureSelector, createSelector } from "@ngrx/store";
+import { SharedState } from "./shared.state";
+
+export const SHARED_STATE_NAME = 'shared';
+
+const getSharedState = createFeatureSelector<SharedState>(SHARED_STATE_NAME)
+
+export const getLoding = createSelector(getSharedState, (state)=>{
+  return state.showLoading;
+})
+
+export const getMessageErr = createSelector(getSharedState, (state)=>{
+  return state.errorMessage;
+})
 

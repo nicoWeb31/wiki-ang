@@ -1,6 +1,6 @@
 
 <app-header></app-header>
-<app-laoding-spinner></app-laoding-spinner>
+<app-laoding-spinner *ngIf="showLoading$ | async"></app-laoding-spinner>
 <app-search-bar (submitted)="onTerm($event)"></app-search-bar>
 <app-page-list [lists]="response"></app-page-list>
 <hr />
@@ -8,6 +8,9 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
+      <div class="alert alert-danger" *ngIf="errorsMessage$ | async">
+        {{errorsMessage$ | async}}
+      </div>
       <router-outlet></router-outlet>
     </div>
   </div>
