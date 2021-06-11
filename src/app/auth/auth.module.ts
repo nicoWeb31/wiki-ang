@@ -9,11 +9,13 @@ import { authReducer } from './state/auth.reducer';
 import { AUTH_STATE_NAME } from './state/auth.selector';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthEffects } from './state/auth.effects';
+import { SignupComponent } from './signup/signup.component';
 
 
 @NgModule({
   declarations: [
-    LoginComponent
+    LoginComponent,
+    SignupComponent
   ],
   imports: [
     CommonModule,

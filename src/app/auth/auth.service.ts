@@ -10,6 +10,8 @@ import { User } from './models/user.model';
 })
 export class AuthService {
     uri = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.FIRE_BASE_KEY}`;
+    uriRegister = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${environment.FIRE_BASE_KEY}`;
+    timeoutInterval: any;
 
     constructor(private http: HttpClient) {}
 
@@ -33,8 +35,45 @@ export class AuthService {
                 return 'Email not found';
             case 'INVALID_PASSWORD':
                 return 'Invalid password';
+            case 'EMAIL_EXISTS':
+                return 'Email already exists';
             default:
                 return 'Unknown error.please try again';
         }
+    }
+
+    signUp(email: string, password: string): Observable<AuthResponseData> {
+        return this.http.post<AuthResponseData>(this.uriRegister, {
+            email,
+            password,
+            returnSecureToken: true,
+        });
+    }
+
+    setUserInLocalStorage(user: User) {
+        localStorage.setItem('userData', JSON.stringify(user));
+        this.runTimoutInterval(user);
+      }
+
+
+    runTimoutInterval(user: User) {
+        const todays = new Date().getTime();
+        const expireDate = user.expireDate.getTime();
+        const timeinterval = expireDate - todays;
+        this.timeoutInterval = setTimeout(() => {
+            //logout or refreshToken
+        }, timeinterval);
+    }
+
+    getUserFromLocalStorage() {
+        const userData = localStorage.getItem('userData');
+        if (userData) {
+            const userD = JSON.parse(userData);
+            const expirdate = new Date(userD.expiationDate);
+            const user = new User(userD.email, userD.token, userD.localId, expirdate);
+            this.runTimoutInterval(user)
+            return user;
+        }
+        return null;
     }
 }
